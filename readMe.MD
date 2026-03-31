@@ -1,4 +1,4 @@
-# 🎬 App de Filmes (React Native)
+# App de Filmes (React Native)
 
 Aplicativo mobile de filmes desenvolvido em **React Native**, com autenticação de usuários, busca de filmes via **TMDB API** e persistência local com **AsyncStorage**.
 
@@ -6,7 +6,7 @@ Aplicativo mobile de filmes desenvolvido em **React Native**, com autenticação
 
 Alunos: Daniel Olimpio, Leonardo Sudario
 
-## 📱 Funcionalidades
+## Funcionalidades
 
 - Cadastro de usuário
 - Login e logout
@@ -19,7 +19,7 @@ Alunos: Daniel Olimpio, Leonardo Sudario
 
 ---
 
-## 🧠 Como o app funciona
+## Como o app funciona
 
 1. O usuário se cadastra e os dados são salvos localmente.
 2. No login, o app valida e-mail e senha.
@@ -42,7 +42,7 @@ Alunos: Daniel Olimpio, Leonardo Sudario
 
 ---
 
-## 🛠 Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - [React Native](https://reactnative.dev/)
 - [React Navigation](https://reactnavigation.org/)
@@ -52,7 +52,7 @@ Alunos: Daniel Olimpio, Leonardo Sudario
 
 ---
 
-## 📂 Estrutura principal
+## Estrutura principal
 
 ```bash
 src/
@@ -70,7 +70,7 @@ src/
 
 ---
 
-## ⚙️ Pré-requisitos
+## Pré-requisitos
 
 - Node.js instalado
 - npm ou yarn
@@ -79,7 +79,7 @@ src/
 
 ---
 
-## 🚀 Instalação e execução
+## Instalação e execução
 
 1. Clone o repositório:
 ```bash
@@ -108,8 +108,7 @@ yarn start
 
 ---
 
-## 🔐 Persistência de dados (AsyncStorage)
-
+## Persistência de dados (AsyncStorage)
 O app utiliza as seguintes chaves:
 
 - `users` → lista de usuários cadastrados
@@ -122,7 +121,7 @@ Exemplo:
 
 ---
 
-## ✅ Regras implementadas
+## Regras implementadas
 
 - Não permite login sem cadastro
 - Não permite cadastrar e-mail duplicado
@@ -132,7 +131,7 @@ Exemplo:
 
 ---
 
-## 💡 Melhorias futuras
+## Melhorias futuras
 
 - Integração com backend real (JWT)
 - Recuperação de senha
@@ -143,7 +142,7 @@ Exemplo:
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 Projeto desenvolvido para fins acadêmicos (faculdade).  
 Se quiser, posso adaptar este README para o formato exigido pelo seu professor.
