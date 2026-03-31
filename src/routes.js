@@ -15,11 +15,12 @@ const defaultScreenOptions = {
     backgroundColor: "#0D0D0D",
     elevation: 0,
     shadowOpacity: 0,
+    borderBottomWidth: 0,
   },
-  headerTintColor: "#FF4D5A",
+  headerTintColor: "#f11826",
   headerTitleStyle: {
     fontWeight: "bold",
-    color: "#FF4D5A",
+    color: "#ff0011",
   },
   cardStyle: {
     backgroundColor: "#0D0D0D",
@@ -34,7 +35,7 @@ export default function Routes() {
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{ title: "LOGIN" }}
+          options={{ title: "MovieCards" }}
         />
         <Stack.Screen
           name="Main"
@@ -49,7 +50,7 @@ export default function Routes() {
                 }}
                 style={{ marginRight: 14 }}
               >
-                <Text style={{ color: "#FF4D5A", fontWeight: "bold" }}>
+                <Text style={{ color: "#ff0011", fontWeight: "bold" }}>
                   Logout
                 </Text>
               </TouchableOpacity>
@@ -64,7 +65,7 @@ export default function Routes() {
         <Stack.Screen
           name="Cadastro"
           component={Cadastro}
-          options={{ title: "CADASTRO" }}
+          options={{ title: "MovieCards" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
