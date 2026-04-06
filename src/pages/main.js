@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Keyboard,
-  ActivityIndicator,
-  Alert,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { Keyboard, ActivityIndicator, Alert, Text } from "react-native";
 import Icon from "@expo/vector-icons/MaterialIcons";
 import api from "../services/api";
 import { TMDB_API_KEY } from "../config";
@@ -38,35 +32,33 @@ export default class Main extends Component {
   };
 
   async componentDidMount() {
-  try {
-    this.props.navigation.setParams({ onLogout: this.handleLogout });
+    try {
+      this.props.navigation.setParams({ onLogout: this.handleLogout });
 
-    const loggedUserStorage = await AsyncStorage.getItem("loggedUser");
-    if (!loggedUserStorage) {
-      this.props.navigation.navigate("Login");
-      return;
+      const loggedUserStorage = await AsyncStorage.getItem("loggedUser");
+      if (!loggedUserStorage) {
+        this.props.navigation.navigate("Login");
+        return;
+      }
+
+      const loggedUser = JSON.parse(loggedUserStorage);
+      const moviesKey = `movies_${String(loggedUser.email).toLowerCase()}`;
+      this.setState({ moviesKey });
+
+      const savedMovies = await AsyncStorage.getItem(moviesKey);
+
+      if (savedMovies) {
+        const parsed = JSON.parse(savedMovies);
+        this.setState({ movies: parsed });
+
+        if (parsed.length > 0) return;
+      }
+
+      await this.loadPopularMovies();
+    } catch (error) {
+      console.log("Erro ao iniciar Main:", error);
     }
-
-    const loggedUser = JSON.parse(loggedUserStorage);
-    const moviesKey = `movies_${String(loggedUser.email).toLowerCase()}`;
-
-    this.setState({ moviesKey });
-
-    const savedMovies = await AsyncStorage.getItem(moviesKey);
-
-    if (savedMovies) {
-      const parsed = JSON.parse(savedMovies);
-      this.setState({ movies: parsed });
-
-      if (parsed.length > 0) return;
-    }
-
-    await this.loadPopularMovies();
-    await this.handleAddMovie();
-  } catch (error) {
-    console.log("Erro ao iniciar Main:", error);
   }
-}
 
   componentDidUpdate(_, prevState) {
     const { movies, moviesKey } = this.state;
@@ -249,19 +241,19 @@ export default class Main extends Component {
     }));
   };
 
- handleLogout = async () => {
-  await AsyncStorage.removeItem("loggedUser");
-  this.props.navigation.reset({
-    index: 0,
-    routes: [{ name: "Login" }],
-  });
-};
+  handleLogout = async () => {
+    await AsyncStorage.removeItem("loggedUser");
+    this.props.navigation.reset({
+      index: 0,
+      routes: [{ name: "Login" }],
+    });
+  };
+
   render() {
     const { movies, searchText, loading } = this.state;
 
     return (
       <Container>
-
         <Form>
           <Input
             autoCorrect={false}
@@ -280,6 +272,21 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
+
+        {movies.length === 0 && (
+          <Text
+            style={{
+              color: "#bdbdbd",
+              textAlign: "center",
+              marginTop: 10,
+              marginBottom: 6,
+              paddingHorizontal: 20,
+            }}
+          >
+            Você ainda não adicionou filmes. O app tem uma indicação popular pronta —
+            clique no "+" para adicionar um filme popular à sua lista.
+          </Text>
+        )}
 
         <List
           showsVerticalScrollIndicator={false}
